@@ -1,0 +1,693 @@
+/* 
+  GRID / FLEXBOX layout
+	Made by Sound Spinning | soundspinning.co.uk
+*/
+
+/* 
+  GLOBAL page settings:
+  ======
+  Remember `rem` & `rlh` are relative to the global (<html>) values below.
+  Also, `%` is always relative to the 'length' of the parent element.
+  `%` units for width & height are wrt the inline-block (hor.) total width.
+  When more than one `%` is used in 'nested elements', remember it gets cumulative ...
+
+  `max-width` as `100%` helps to prevent overflow issues, and avoids over-stretching images.
+  This tech helps to make images responsive for all screens:
+  https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics/Sizing
+*/
+
+/* set global VARIABLES */
+:root {
+  --base-size: 16px;
+  --gap: 1rem;
+  --max-card-w: 400px;
+  --text-colour: black;
+  --gradDark: lavender;
+  --gradLight: white;
+  --link-line: crimson;
+}
+
+/* FONTS: 
+Pair a modern sans-serif (e.g., Inter) for body text with a monospace font (e.g., Fira Code) for code/engineering sections. */
+/* https://fonts.bunny.net/ - do not track, faster than G-fonts [?] */
+
+/* For font-weight use: normal (400), bold (700), lighter, bolder or a number.
+   The specific classes method below is only for reference, not easy to maintain.
+*/
+
+/* font-weight: <weight> ==> Use a value from 100 to 900
+.inter-<uniquifier> ==> Use a unique and descriptive class name */
+body {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 400; */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* font-weight: <weight> ==> Use a value from 300 to 700
+.fira-code-<uniquifier> ==> Use a unique and descriptive class name */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fira Code", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: 500; */
+  font-weight: normal;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: var(--base-size, 16px);
+  font-size: min(0.6rem + 1vw, 18px);
+  line-height: 1.5;  /* Default `lh`: 1.2 * font-size */
+  overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  /* width: 90%; */
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  color: var(--text-colour, black);
+}
+
+body {
+  background: linear-gradient(to bottom, var(--gradDark), var(--gradLight));
+}
+
+/* LINKS follow an order in styling */
+a {
+  transition: 0.3s;
+}
+
+a:link,
+a:active,
+a:visited {
+  color: var(--text-colour, black);
+  text-decoration: solid underline var(--link-line, crimson);
+}
+
+a:hover,
+a:focus {
+  background-color: black;
+  color: aliceblue;
+  border: 1px solid;
+  /* padding: 1rem; */
+  padding: 0.3rem 0.6rem;
+  text-decoration: dotted underline var(--link-line, crimson);
+}
+
+a:visited {
+  text-decoration: dashed underline var(--link-line, crimson);
+}
+
+/* 
+  POSITION settings:
+  ========
+  Static (default), relative (wrt last ancestor positioning), absolute (wrt containing element OR initial containing block), fixed (wrt viewport) & sticky (scrolls with content till reached its location, then sticky).
+  https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout/Positioning
+*/
+
+/* Add ANIMATIONs */
+@keyframes slideIn {
+  from {translate: 0vw 100vh; opacity: 0; scale: 0;}
+  to {translate: 0 0; opacity: 1; scale: 1;}
+}
+
+@keyframes slideOut {
+  from {translate: 0 0; opacity: 1; scale: 1;}
+  to {translate: 100vw 100vh; opacity: 0; scale: 0;}
+}
+
+@keyframes showup {
+  0% {opacity:0;}
+  20% {opacity:1;}
+  80% {opacity:1;}
+  100% {opacity:0;}
+}
+
+@keyframes l2r {
+  0% { margin-left:-100vw; }
+  20% { margin-left:-100vw; }
+  35% { margin-left:0px; }
+  100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+  0% {opacity:0;width:0px;}
+  20% {opacity:1;width:0px;}
+  30% {width:75vw;}
+  80% {opacity:1;}
+  100% {opacity:0;width:75vw;}
+}
+
+/* Common to CSS Flexbox & Grid */
+main#grid {
+  padding: var(--gap, 1rem);
+  /* <grid-row-gap> <grid-column-gap> */
+  gap: var(--gap, 1rem);
+}
+
+/* FLEXBOX */
+main.flex-gallery {
+  display: flex;
+  flex-flow: row wrap;
+  /* CROSS flex axis */
+  /* align-items: center; */
+  /* MAIN flex axis */
+  /* justify-content: space-around; */
+}
+
+main.flex-gallery article {
+  /* flex - grow_factor shrink_factor min-size */
+  flex: 1 1 240px;
+  max-width: var(--max-card-w, 400px);
+}
+
+/* GRID */
+main.grid-gallery {
+  display: grid;
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  /* grid-template-rows: min-content 1fr min-content; */
+  /* grid-auto-flow: row; */
+
+  /* ROW grid axis */
+  /* justify-items: stretch; */
+  /* justify-content: space-evenly; */
+  
+  /* COLUMN grid axis */
+  /* align-items: stretch; */
+  /* align-content: stretch; */
+}
+
+article {
+  max-width: var(--max-card-w, 400px);
+  font-size: 0.75rem;
+}
+
+section h2 span,
+article details,
+article h2 span {
+  font-family: "Inter", sans-serif;
+  text-transform: initial;
+}
+
+button,
+details {
+  z-index: 2;
+  font-size: 1rem;
+}
+
+details p {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: start;
+}
+
+details span {
+  padding-right: 0.5rem;
+}
+
+summary {
+  text-decoration: underline 1px solid crimson;
+}
+
+summary:active,
+summary:focus,
+summary:hover {
+  cursor: pointer;
+  text-decoration: underline 1px dotted crimson;
+}
+
+/* Responsive images/media:
+   `max-width: 100%` scales media to ensure they never overflow their containers.
+   <picture> allows for a set of images.
+*/
+img,
+picture,
+video {
+  max-width: 100%;
+  max-height: 80vh;
+  /* max-height: 800px; */
+  /* transition - <property> <duration> <timing-function> <delay>; */
+  transition: 1s;
+}
+
+article img:hover {
+  scale: 0.95;
+  filter: sepia(75%);
+  cursor: pointer;
+  border-radius: 5rem;
+}
+
+#intro-modal {
+  /* display: none; */
+  background-color: black;
+  color: lavender;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* animation: slideOut 2s 2s; */
+}
+
+#intro-text {
+  display: flex; 
+  /* display: none; */
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;  
+  height: 100%;
+  font-size: calc(3rem + 1vw);
+  overflow:hidden;
+  white-space:nowrap;
+}
+
+/* #intro-text div:nth-of-type(1) {
+  animation: showup 5s infinite;
+}
+
+#intro-text div:nth-of-type(2) {
+  animation: reveal 5s infinite;
+} */
+
+/* #intro-text div span {
+  animation: l2r 5s;
+} */
+
+#intro-text div:nth-of-type(3) {
+  display: inline-block;
+  /* animation: reveal 5s infinite; */
+  position: absolute;
+  top: 25vh;
+}
+
+#intro-text div strong {
+  color: var(--link-line, crimson);
+}
+
+#main-modal {
+  background-color: black;
+  color: lavender;
+  display: none; 
+  position: fixed;   /* Stay in place */
+  z-index: 1;        /* Sit on top */
+  top: 0;
+  width: 100%;
+  height: 100%;
+  /* overflow: auto; */
+  animation: slideIn 1s;
+}
+
+#modal-content {
+  display: flex; 
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;  
+  height: 100%;
+}
+
+#modal-controls {
+  position: absolute;
+  top: 1rem;
+  display: flex; 
+  flex-flow: row nowrap;
+  /* align-items: center; */
+  justify-content: space-evenly;  
+  width: 100%;
+  padding: 0.5rem;
+}
+
+@media screen and (max-width: 430px) {
+  #modal-controls {
+    top: unset;
+    bottom: 1rem;
+    font-size: medium;
+  }
+  #modal-caption {
+    display: none;
+  }
+  #intro-modal div {
+    font-size: calc(2rem + 1vw);
+  }
+  details p {
+    flex-flow: row wrap;
+  }
+}
+
+#modal-controls * {
+  /* flex: 1; */
+  padding: 0.5rem;
+  background-color: black;
+  transition: 1s;
+  border-radius: 10%;
+}
+
+#modal-content span {
+  text-align: center;
+}
+
+#modal-title {
+  display: inline-block;
+  margin: 0;
+}
+
+#modal-caption {
+  font-size: min(1rem + 1vw, 18px);
+  padding: 0.5rem;
+}
+
+.close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 2;
+  font-family: "Inter", sans-serif;
+  font-size: 3rem;
+  line-height: 1rem;
+  transition: 1s;
+}
+
+.made-by {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 2rem;
+  z-index: 2;
+  transition: 1s;
+}
+
+ul, .made-by {
+  font-size: min(0.8rem + 1vw, 18px);
+}
+
+#prev:hover,
+#next:hover,
+.close:hover {
+  transform: scale(1.2);
+  color: orange;
+  cursor: pointer;
+}
+
+header {
+  padding: 0 1rem;
+  width: 100%;
+}
+
+footer {
+  background-color: gray;
+  padding: 0 1rem;
+  position: sticky;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  opacity: 0.95;
+  animation: slideIn 1s;
+}
+
+footer span a, 
+footer span a:visited,
+footer span a:active {
+  color: aliceblue;
+}
+
+footer span a:hover,
+footer span a:focus {
+  background-color: black;
+  border: 1px solid;
+  padding: 0.3rem 0.1rem;
+  cursor: pointer;
+}
+
+.foot-bar {
+  display: flex;
+  /* flex - direction wrap/nowrap; */
+  flex-flow: row wrap;
+  /* CROSS flex axis */
+  align-items: center;
+  /* MAIN flex axis */
+  justify-content: space-between;  
+  padding: 0.5rem 0;
+}
+
+.foot-bar > span > a {
+  /* padding: 0 0.6rem; */
+  letter-spacing: .1rem;
+  text-decoration: solid underline var(--link-line, crimson);
+}
+
+.foot-bar > span > span {
+  font-size: 1.2rem;
+  /* color: black; */
+}
+
+#controls-modal,
+#about-modal {
+  display: none;
+  flex-flow: row wrap;
+  animation: slideIn 1s;
+  padding: 1rem 2rem 1rem 0;
+  justify-content: space-evenly;  
+}
+
+/* #controls-modal > div, */
+#about-modal > section {
+  flex: 1 1 240px;
+  margin: 0 1rem;
+}
+
+/* START Theme switch */
+body:has(.theme-switch__input:checked) {
+  --text-colour: lavender;
+  --gradDark: hsl(198, 44%, 11%);
+  --gradLight: hsl(198, 39%, 29%);
+  footer {
+    background-color: black;
+    opacity: 0.89;
+  }
+}
+
+.theme-switch__input {
+  display: none;
+}
+
+.theme-switch__input:hover + .theme-switch__label span::after, .theme-switch__input:focus + .theme-switch__label span::after {
+  background-color: lightgray
+}
+
+.theme-switch__label {
+  position: relative;
+  margin: 2rem 4rem 1rem 2rem;
+  transition: background-color 200ms ease-in-out;
+  width: 7rem;
+  height: 2rem;
+  border-radius: 3.125rem;
+  text-align: center;
+  background-color: slateGray;
+  box-shadow: -4px 4px 15px inset rgba(0, 0, 0, 0.4);
+}
+.theme-switch__label span {
+  position: absolute;
+  bottom: calc(100% + 0.45rem);
+  left: 0;
+  width: 100%;
+}
+
+.theme-switch__label::before, .theme-switch__label::after {
+  font-size: 2rem;
+  position: absolute;
+  transform: translate3d(0, -50%, 0);
+  top: 50%;
+}
+
+.theme-switch__label::before {
+  content: "\263C";
+  right: 100%;
+  margin-right: 10px;
+  color: orange;
+}
+.theme-switch__label::after {
+  content: "\263E";
+  left: 100%;
+  margin-left: 10px;
+}
+
+.theme-switch__label span::after {
+  position: absolute;
+  top: calc(100% + 0.69rem);
+  left: 0.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  content: "";
+  border-radius: 50%;
+  background-color: burlywood;
+  transition: transform 200ms, background-color 200ms;
+  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.theme-switch__input:checked ~ .theme-switch__label span::after {
+  transform: translate3d(5.08rem, 0, 0);
+}
+
+.theme-switch__input:checked ~ .theme-switch__label::before {
+  /* color: black; */
+  color: var(--text-colour);
+}
+.theme-switch__input:checked ~ .theme-switch__label::after {
+  color: turquoise;
+}
+/* END Theme switch */
+
+/* START captions switch */
+body:has(.captions-switch__input:checked) {
+  article h2, 
+  article h2 span {
+    display: none;
+  }
+}
+
+.captions-switch__input {
+  display: none;
+}
+
+.captions-switch__input:hover + .captions-switch__label span::after, .captions-switch__input:focus + .captions-switch__label span::after {
+  background-color: lightgray;
+}
+
+.captions-switch__label {
+  position: relative;
+  margin: 2rem 5rem 1rem 2rem;
+  transition: background-color 200ms ease-in-out;
+  width: 7rem;
+  height: 2rem;
+  border-radius: 3.125rem;
+  text-align: center;
+  background-color: slateGray;
+  box-shadow: -4px 4px 15px inset rgba(0, 0, 0, 0.4);
+}
+.captions-switch__label span {
+  position: absolute;
+  bottom: calc(100% + 0.45rem);
+  left: 0;
+  width: 100%;
+}
+
+.captions-switch__label::before, .captions-switch__label::after {
+  font-size: 2rem;
+  position: absolute;
+  transform: translate3d(0, -50%, 0);
+  top: 50%;
+}
+
+.captions-switch__label::before {
+  content: "ON";
+  right: 100%;
+  margin-right: 10px;
+  color: orange;
+  font-size: 1.5rem;
+}
+.captions-switch__label::after {
+  content: "OFF";
+  left: 100%;
+  margin-left: 10px;
+  font-size: 1.5rem;
+}
+
+.captions-switch__label span::after {
+  position: absolute;
+  top: calc(100% + 0.69rem);
+  left: 0.2rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  content: "";
+  border-radius: 50%;
+  background-color: burlywood;
+  transition: transform 200ms, background-color 200ms;
+  box-shadow: -3px 3px 8px rgba(0, 0, 0, 0.4);
+}
+
+.captions-switch__input:checked ~ .captions-switch__label span::after {
+  transform: translate3d(5.08rem, 0, 0);
+}
+
+.captions-switch__input:checked ~ .captions-switch__label::before {
+  /* color: black; */
+  color: var(--text-colour);
+}
+.captions-switch__input:checked ~ .captions-switch__label::after {
+  color: turquoise;
+}
+/* END captions switch */
+
+/* START gap switch */
+.range {
+  display: flex;
+  flex-flow: column-reverse;
+  /* CROSS flex axis */
+  align-items: center;
+  /* MAIN flex axis */
+  justify-content: flex-end;
+}
+
+.gap-switch__label {
+  margin-bottom: 0.8rem;
+}
+
+datalist {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  /* writing-mode: vertical-lr; */
+  width: 150px;
+}
+/* END gap switch */
+
+/* START buttons */
+button {
+  /* min-width: 130px; */
+  /* height: 40px; */
+  color: whitesmoke;
+  padding: 0.5rem 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 5px;
+  z-index: 0;
+  background: whitesmoke;
+  overflow: hidden;
+  border: 1px solid black;
+  color: black;
+}
+
+button:hover {
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+button:hover:after {
+  width: 100%;
+}
+
+button:after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  transition: all 0.3s ease;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 100%;
+  background: #212529;
+}
+/* END buttons */

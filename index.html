@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<!-- 
+	GRID layout - 
+	Made by Sound Spinning | soundspinning.co.uk 
+-->
+  <head>
+		<!-- 1. Core Meta Tags -->
+		<!-- ================= -->
+		<!-- Character Encoding -->
+		<meta charset="UTF-8">
+		
+		<!-- Viewport (Mobile Optimization) -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Code Author -->
+		<meta name="author" content="Sound Spinning" />
+		
+		<!-- Primary Title (Include Keywords + Location) -->
+		<title>Thomas J White | Musician and Artist | Brighton (UK)</title>
+	
+		<!-- Meta Description (Include Services + Location + Call-to-Action) -->
+		<meta name="description" content="Thomas J White's art in Brighton, East Sussex.">
+	
+		<!-- Canonical URL (Avoid Duplicate Content) -->
+		<link rel="canonical" href="https://thomaswhiteart.co.uk">
+	
+		<!-- Favicon (All Sizes) - https://realfavicongenerator.net -->
+		<link rel="shortcut icon" href="./favicon.ico" />
+		<link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+		<link rel="manifest" href="./site.webmanifest" />
+	
+		<!-- 2. Local SEO & Google Business Profile -->
+		<!-- ====================================== -->
+		<!-- Geo-Region Meta Tags -->
+		<!-- Country code -->
+		<meta name="geo.region" content="GB">
+		<!-- City name -->
+		<meta name="geo.placename" content="Brighton">
+		
+		<!-- Google Business Profile Verification (if applicable) -->
+		<!-- <meta name="google-site-verification" content="your_verification_code_here"> -->
+	
+		<!-- Local Business Schema Markup (JSON-LD) -->
+		<!-- <script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "LocalBusiness",
+		  "name": "Sound Spinning",
+		  "image": "https://soundspinning.co.uk/assets/logo.jpg",
+		  "@id": "https://soundspinning.co.uk",
+		  "url": "https://soundspinning.co.uk",
+		  "telephone": "",
+		  "priceRange": "$$",
+		  "address": {
+			"@type": "PostalAddress",
+			"streetAddress": "",
+			"addressLocality": "Brighton",
+			"addressRegion": "East Sussex",
+			"postalCode": "BN2 3AU",
+			"addressCountry": "GB"
+		  },
+		  "geo": {
+			"@type": "GeoCoordinates",
+			"latitude": 50.8327431,
+			"longitude": -0.1249901
+		  },
+		  "OpeningHoursSpecification": {
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+			"opens": "09:00",
+			"closes": "17:00"
+		  },
+		  "sameAs": [
+			"https://www.facebook.com/soundspinning",
+			"https://www.instagram.com/soundspinning",
+			"https://g.page/your-google-business-profile"
+		  ]
+		}
+		</script> -->
+	
+		<!-- 3. Social Media & Open Graph (For Sharing) -->
+		<!-- ============================ -->
+		<!-- Open Graph (Facebook/LinkedIn) -->
+		<meta property="og:title" content="Thomas J White | Musician and Artist | Brighton (UK)">
+		<meta property="og:description" content="Thomas J White's art in Brighton, East Sussex.">
+		<meta property="og:image" content="https://thomaswhiteart.co.uk/assets/logo.jpg">
+		<meta property="og:url" content="https://thomaswhiteart.co.uk">
+		<meta property="og:type" content="art">
+		
+		<!-- Twitter Card (maybe redundant?) -->
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:title" content="Thomas J White | Musician and Artist | Brighton (UK)">
+		<meta name="twitter:description" content="Thomas J White's art in Brighton, East Sussex.">
+		<meta name="twitter:image" content="https://thomaswhiteart.co.uk/assets/logo.jpg">
+
+    <!-- 4. Technical SEO & Performance -->
+		<!-- ============================== -->
+    <!-- FONTS -->
+		<!-- https://fonts.bunny.net/ - do not track, faster than G-fonts [?] -->
+    <link href="https://fonts.bunny.net/css?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.bunny.net/css?family=Fira+Code:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <!-- Main STYLES -->
+    <!-- <link rel="stylesheet" href="./css/normalize.css" /> -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>	
+
+	<body>
+		<!-- Intro Modal -->
+		<section id="intro-modal">
+			<span class="close"> &cross; </span>
+			<div id="intro-text">
+				<div>
+					<strong>ART </strong> 
+				</div>
+				<div>
+          <span> is important</span>
+				</div>
+				<div>
+					<strong>Thomas J White</strong><span>&apos;s art</span>
+				</div>
+			</div>
+		</section>
+
+		<!-- Header -->
+		<!-- <header>
+			<h1><a href=""><strong>GRID</strong> <small>by Sound Spinning</small></a></h1>
+		</header> -->
+
+		<!-- Main | populated by `main.js` -->
+		<main id="grid" class="grid-gallery">
+		</main>
+
+		<!-- Pics MODAL -->
+		<section id="main-modal">
+			<span class="close"> &cross; </span>
+			<div id="modal-content">
+				<div id="modal-controls">
+					<span id="prev">&#10094; &#10094; Prev</span>
+					<span id="count"></span>
+					<span id="next">Next &#10095; &#10095;</span>
+				</div>
+				<img id="modal-img">
+				<span>
+			    <h2 id="modal-title"></h2>
+			    <span id="modal-caption"></span>
+				</span>
+				<details id="modal-details"></details>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer>
+			<div class="foot-bar">
+				<span>
+					<a>ABOUT</a>
+					<!-- <span>&lpar;i&rpar;</span> -->
+					<span>&ii;</span>
+				</span>
+				<span>
+					<a>CONTROLS</a>
+					<span>&#9874;</span>
+				</span>
+				<span>
+					&copy; Thomas J White - 2025
+				</span>
+			</div>
+
+		  <!-- About MODAL -->
+			<div id="about-modal">
+			  <span class="close">&cross;</span>
+				<span class="made-by">
+					Made by: <a href="https://soundspinning.co.uk" target="_blank">Sound Spinning</a>
+				</span>
+			  <section>
+					<h2>Thomas J White: 
+					<span>prolific musician &amp; artist based in Brighton (UK). Over decades he has delivered many quality projects:
+					<ul>
+						<li>Founder with brother Alex of <a href="https://www.youtube.com/electricsoftparade" target="_blank">The Electric Soft Parade</a></li>
+						<li>Founder with husband Alfie of <a href="https://www.youtube.com/channel/UCGIaDu5b7THMU2TD5CbTAEg" target="_blank">White Magic for Lovers</a></li>
+						<li>Founder of his label &amp; solo material at <a href="https://chordorchard.bandcamp.com/" target="_blank">Chord Orchard</a></li>
+						<li>Drummer at <a href="https://thewaeve.komi.io/" target="_blank">The Waeve</a></li>
+						<li>Drummer at <a href="https://seapowerband.com/" target="_blank">Sea Power</a></li>
+						<li>Guitarrist at <a href="https://brakes.bandcamp.com/" target="_blank">BREAKS</a></li>
+						<li>etc ...</li>
+					</ul>
+					</span>
+				  </h2>
+				</section>
+				<section>
+					<section>
+					  <h2>Follow me</h2>
+					  <ul>
+					  	<li><a href="https://www.facebook.com/thomas.white.54" target="_blank"><span>Facebook</span></a></li>
+					  	<li><a href="https://www.instagram.com/whitemagic4lovers/" target="_blank"><span>Instagram</span></a></li>
+					  </ul>
+				  </section>
+				  <section>
+				  	<h2>Contact</h2>
+				  	<ul>Email: <a href="mailto:tomwhiteesp@aol.com">tomwhiteesp@aol.com</a></ul>
+				  </section>
+			  </section>
+			</div>
+
+			<!-- Controls MODAL -->
+			<div id="controls-modal">
+			  <span class="close">&cross;</span>
+					<!--Theme switch-->
+					<input type="checkbox" id="themeSwitch" name="theme-switch" class="theme-switch__input" checked/>
+					<label for="themeSwitch" class="theme-switch__label">
+					  <span>Switch theme</span>
+					</label>
+
+					<!--Captions switch-->
+					<input type="checkbox" id="captionsSwitch" name="captions-switch" class="captions-switch__input"/>
+					<label for="captionsSwitch" class="captions-switch__label">
+					  <span>AI captions</span>
+					</label>
+
+					<!--Gap switch-->
+					<span class="range">
+						<datalist id="values">
+					  	<option value="0" label="0"></option>
+					  	<option value="1" label="1"></option>
+					  	<option value="2" label="2"></option>
+					  	<option value="3" label="3"></option>
+					  	<option value="4" label="4"></option>
+					  	<option value="5" label="5"></option>
+					  </datalist>
+					  <input type="range" min="0" max="5" value="1" step="1" list="values" id="gapSwitch" name="gap-switch" class="gap-switch__input"/>
+					  <label for="gapSwitch" class="gap-switch__label">
+					    <span>Gap size</span>
+					  </label>
+					</span>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script src="./js/main.js"></script>
+
+	</body>
+</html>
