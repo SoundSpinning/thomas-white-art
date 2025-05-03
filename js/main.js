@@ -7,7 +7,7 @@
 var imgix_path = "./assets/";
 // imgix settings, appended after image filename.
 // Input width value `w=` right.
-var imgix_ops = "?w=800&auto=compress,enhance,format";
+// var imgix_ops = "?w=800&auto=compress,enhance,format";
 // var index = 0;
 
 // START parsing file list
@@ -22,7 +22,7 @@ fetch('js/images.json')
     main_grid.innerHTML +=
 `     <!-- IMG${img.imgId} -->
 			<article>
-				<img src="${imgix_path}${img.file}${imgix_ops}" alt="${img.alt}" loading="lazy" data-id="${img.imgId}" title="${img.file.split(/\.(?=[^\.]+$)/)[0]}"/>
+				<img src="${imgix_path}${img.file}" alt="${img.alt}" loading="lazy" data-id="${img.imgId}" title="${img.file.split(/\.(?=[^\.]+$)/)[0]}"/>
 				<h2>${img.imgId}.-${img.file.split(/\.(?=[^\.]+$)/)[0]}${img.year}<span> ${img.alt}</span></h2>
 				<details>
 					<summary> Info </summary>
