@@ -9,12 +9,13 @@ var imgix_path = "./assets/";
 // Input width value `w=` right.
 // var imgix_ops = "?w=800&auto=compress,enhance,format";
 // var index = 0;
+const main_grid = document.getElementById("grid");
 
 // START parsing file list
 fetch('js/images.json')
 .then(response => response.json())
 .then(data => {
-  const main_grid = document.getElementById("grid");
+  // const main_grid = document.getElementById("grid");
   const dataImgs = data.images;
   // Append images to HTML
   for (const img of dataImgs) {
@@ -23,7 +24,7 @@ fetch('js/images.json')
 `     <!-- IMG${img.imgId} -->
 			<article>
 				<img src="${imgix_path}${img.file}" alt="${img.alt}" loading="lazy" data-id="${img.imgId}" title="${img.file.split(/\.(?=[^\.]+$)/)[0]}"/>
-				<h2>${img.imgId}.-${img.file.split(/\.(?=[^\.]+$)/)[0]}${img.year}<span> ${img.alt}</span></h2>
+				<h2>${img.imgId}.-${img.year}<span> ${img.alt}</span></h2>
 				<details>
 					<summary> Info </summary>
 					<p>
@@ -32,6 +33,7 @@ fetch('js/images.json')
 				</details>
 			</article>`;
   }
+  // ${img.file.split(/\.(?=[^\.]+$)/)[0]}
   // console.log("Got Here#1"); 
   // this is called here so that the DOM has all elements required
   window.onload = init();
@@ -63,6 +65,8 @@ function init() {
     introModal.style.display = "none";
   },6000)
   
+  main_grid.style.display = "grid";
+
   // MAIN modal
   // Get the image and insert it inside the modal - use its "alt" text as a caption
   // + carousel inside the modal
@@ -115,17 +119,14 @@ function init() {
   })
   
   // About box popup
-  // var footer = document.querySelector("footer");
   var footBar = document.querySelector(".foot-bar");
   var aboutBox = document.querySelector(".foot-bar > span:nth-of-type(1) > a");
   var controlsBox = document.querySelector(".foot-bar > span:nth-of-type(2) > a");
   aboutBox.onclick=()=> {
     aboutModal.style.display = "flex";
-    // footer.style.animation = "slideIn 0.8s";
     footBar.style.display = "none";
   }
   controlsBox.onclick=()=> {
-    // footer.style.animation = "slideIn 0.8s";
     controlsModal.style.display = "flex";
     footBar.style.display = "none";
   }
@@ -142,14 +143,12 @@ function init() {
       controlsModal.style.animation = "slideOut 1s";
       setTimeout(()=>{
         introModal.style.display = "none";
-        // introModal.style.animation = "slideIn 1s";
         modal.style.display = "none";
         modal.style.animation = "slideIn 1s";
         aboutModal.style.display = "none";
         aboutModal.style.animation = "slideIn 0.8s";
         controlsModal.style.display = "none";
         controlsModal.style.animation = "slideIn 0.8s";
-        // footer.style.animation = "slideIn 0.8s";
         footBar.style.display = "flex";
       },500)
     }
