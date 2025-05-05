@@ -1,3 +1,7 @@
+// set scroll off at intro-modal
+var page = document.querySelector("html");
+page.style.overflowY = "hidden";
+
 // 
 // Read and add to HTML all images via *.json file list
 // 
@@ -63,6 +67,7 @@ function init() {
 
   setTimeout(()=>{
     introModal.style.display = "none";
+    page.style.overflowY = "initial";
   },6000)
   
   main_grid.style.display = "grid";
@@ -82,6 +87,7 @@ function init() {
   var modalDetails = document.getElementById("modal-details");
   imgs.forEach(e => {
     e.onclick=()=> {
+      page.style.overflowY = "hidden";
       modal.style.display = "block";
       modalImg.src = e.src;
       modalTitle.innerHTML = e.title;
@@ -150,6 +156,7 @@ function init() {
         controlsModal.style.display = "none";
         controlsModal.style.animation = "slideIn 0.8s";
         footBar.style.display = "flex";
+        page.style.overflowY = "initial";
       },500)
     }
   })
